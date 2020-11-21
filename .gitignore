@@ -1,0 +1,5 @@
+# Ignore all subfolders (ie. autorandr profiles)
+*/
+# Except for our own script folder
+!/noughty/
+/noughty/lastprofile.dat
