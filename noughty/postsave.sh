@@ -4,7 +4,7 @@ noughtyRoot="$(dirname "$0")/noughty" # This is relative to the origin script, w
 . "$noughtyRoot/functions.sh"
 
 # Save dconf snapshot for the new profile
-snapshot="$AUTORANDR_PROFILE_FOLDER/snapshot.dconf"
+snapshot="$AUTORANDR_PROFILE_FOLDER/dconf.snapshot"
 if touch "$snapshot" ; then
     if [ -w "$snapshot" ] ; then
         if dconf dump / > "$snapshot" ; then
@@ -16,4 +16,3 @@ if touch "$snapshot" ; then
         popup warning "noughty autorandr" "Failed to save dconf snapshot for the new profile:\nCould not create the snapshot file."
     fi
 fi
-

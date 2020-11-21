@@ -16,7 +16,7 @@ profile=$result
 # Only do work if actually switching to a new profile (not just reloading the existing)
 if [ "$profile" != "$AUTORANDR_CURRENT_PROFILE" ] ; then
     # Save dconf snapshot for the old profile
-    snapshot="$profile/snapshot.dconf"
+    snapshot="$profile/dconf.snapshot"
     if touch "$snapshot" ; then
         if [ -w "$snapshot" ] ; then
             if dconf dump / > "$snapshot" ; then
