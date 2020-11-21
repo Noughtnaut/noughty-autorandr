@@ -10,11 +10,26 @@ snapshot="$AUTORANDR_PROFILE_FOLDER/dconf.snapshot"
 if [ -f "$snapshot" ] ; then
     if [ -r "$snapshot" ] ; then
         if dconf load / < "$snapshot" ; then
-            popup save "noughty autorandr" "Restored dconf snapshot for '$AUTORANDR_CURRENT_PROFILE'."
+            popup load "noughty autorandr" "Restored dconf snapshot for '$AUTORANDR_CURRENT_PROFILE'."
         else
             popup warning "noughty autorandr" "Failed to restore dconf snapshot for the profile."
         fi
     else
         popup warning "noughty autorandr" "Failed to restore dconf snapshot for the profile:\nA snapshot exists, but is not readable."
+    fi
+fi
+
+# Restore default printer for the new profile
+snapshot="$AUTORANDR_PROFILE_FOLDER/default-printer.snapshot"
+if [ -f "$snapshot" ] ; then
+    if [ -r "$snapshot" ] ; then
+        printer=`cat $snapshot`
+        if lpadmin -d "$printer" ; then
+            popup printer "noughty autorandr" "Restored default printer '$printer' for '$AUTORANDR_CURRENT_PROFILE'."
+        else
+            popup warning "noughty autorandr" "Failed to restore default printer '$printer' for the profile."
+        fi
+    else
+        popup warning "noughty autorandr" "Failed to restore default printer for the profile:\nA snapshot exists, but is not readable."
     fi
 fi
