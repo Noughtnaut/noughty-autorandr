@@ -6,7 +6,7 @@ noughtyRoot="$(dirname "$0")/noughty" # This is relative to the origin script, w
 popup display "noughty autorandr" "Profile '$AUTORANDR_CURRENT_PROFILE' selected." 11
 
 # Restore dconf snapshot for the new profile
-snapshot="$AUTORANDR_PROFILE_FOLDER/snapshot.dconf"
+snapshot="$AUTORANDR_PROFILE_FOLDER/dconf.snapshot"
 if [ -f "$snapshot" ] ; then
     if [ -r "$snapshot" ] ; then
         if dconf load / < "$snapshot" ; then
