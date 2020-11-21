@@ -15,7 +15,7 @@ In this first iteration:
 Future plans involve:
 
 - selecting appropriate microphone and speaker devices (I have a working prototype of this, based on [this](https://unix.stackexchange.com/questions/460996/autorandr-but-for-audio-devices/) resource)
-- selecting an appropriate default printer (although this is more closely dependent on network access, a default might be assumed based on the connected displays). At least [two](https://askubuntu.com/questions/1025450/how-to-automatically-switch-default-printers-based-on-your-location) [other](https://unix.stackexchange.com/questions/323582/how-can-i-automatically-change-the-default-printer-based-on-the-connected-networ) persons have expressed a desire for this.
+- selecting an appropriate default printer _based on network status_ (until then I shall presume a default can be chosen based on the connected displays). At least [two](https://askubuntu.com/questions/1025450/how-to-automatically-switch-default-printers-based-on-your-location) [other](https://unix.stackexchange.com/questions/323582/how-can-i-automatically-change-the-default-printer-based-on-the-connected-networ) persons have expressed a desire for this, and they might not (want to) use `autorandr`.
 
 ## Installation
 

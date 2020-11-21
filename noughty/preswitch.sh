@@ -28,7 +28,20 @@ if [ "$profile" != "$AUTORANDR_CURRENT_PROFILE" ] ; then
             popup warning "noughty autorandr" "Failed to save dconf snapshot for the previous profile:\nCould not create the snapshot file."
         fi
     fi
-
     # Store new profile for next time
     store lastprofile "$AUTORANDR_CURRENT_PROFILE"
+
+    # Save default printer for the old profile
+    snapshot="$profile/default-printer.snapshot"
+    if touch "$snapshot" ; then
+        if [ -w "$snapshot" ] ; then
+            if lpstat -d | awk '{ print $NF }' > "$snapshot" ; then
+                popup printer "noughty autorandr" "Saved default printer for '$profile'."
+            else
+                popup warning "noughty autorandr" "Failed to save default printer for the previous profile:\nCould not write to the snapshot file."
+            fi
+        else
+            popup warning "noughty autorandr" "Failed to save default printer for the previous profile:\nCould not create the snapshot file."
+        fi
+    fi
 fi
