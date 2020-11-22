@@ -19,4 +19,18 @@ Future plans involve:
 
 ## Installation
 
+### Prerequisites
+
+- This is an add-on for `autorandr` which therefore needs to be installed beforehand.
+- Also, `noughty-autorandr` assumes that `dconf`, `cups`, and `libnotify` are installed.
+
+### Installation
 The `noughty` directory should be placed within `~/.config/autorandr/`, alongside any existing profiles you may have (don't worry, `autorandr` won't pick up on it). The files in _this_ project that are outside of that directory merely show how to plug them into your existing [hook scripts](https://github.com/phillipberndt/autorandr#hook-scripts); you probably do not want to replace yours with these unless you don't have any to begin with.
+
+## Usage
+
+Just use `autorandr` as you usually do, that's all there is to it! From time to time you may want to save changes to your display setup (or create new ones), and in those cases `noughty-autorandr` will be called upon to do its additional tasks.
+
+[](TODO add section Contrubuting)
+
+[](TODO add section License)
