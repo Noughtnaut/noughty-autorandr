@@ -6,20 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-[](==Types of changes==)
-[](Added      for new features)
-[](Changed    for changes in existing functionality)
-[](Deprecated for soon-to-be removed features)
-[](Removed    for now removed features)
-[](Fixed      for any bug fixes)
-[](Security   in case of vulnerabilities)
+<!--- 
+Types of change
+Added      for new features
+Changed    for changes in existing functionality
+Deprecated for soon-to-be removed features
+Removed    for now removed features
+Fixed      for any bug fixes
+Security   in case of vulnerabilities
 
-[](==Semantic versioning==)
-[](Given a version number MAJOR.MINOR.PATCH increment the:)
-[](-MAJOR version when you make incompatible API changes)
-[](-MINOR version when you add functionality in a backwards compatible manner)
-[](-PATCH version when you make backwards compatible bug fixes)
-[](Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format)
+Semantic versioning
+Given a version number MAJOR.MINOR.PATCH increment the:
+- MAJOR version when you make incompatible API changes
+- MINOR version when you add functionality in a backwards compatible manner
+- PATCH version when you make backwards compatible bug fixes
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format
+--->
 
 ## [0.1.0] - 2020-11-19
 
