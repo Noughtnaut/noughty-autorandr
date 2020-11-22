@@ -6,38 +6,63 @@ The intention is to augment the existing functionality of [autorandr](https://gi
 
 ### Motivation
 
-I am delighted to be using `autorandr` in my work environments (my desk, various meeting rooms, mobile, etc.). I prefer having a separate `panel` with its own `Window List` on each of my three displays, but that also means that when I'm on the go with my laptop, I'll have a stack of three panels on a single display, each with redundant `Window List`s, and that's just silly. Ideally, the layouts should adjust seamlessly -- and this project aims to do just that.
+I am delighted to be using `autorandr` in my work environments (my desk, various meeting rooms, mobile, etc.).
 
-In this first iteration:
+However, I prefer each of my three displays having a separate `panel` with its own `Window List` applet, but that also means that when I'm on the go with my laptop, I'll have a stack of three panels on a single display, each with its own redundant `Window List`. That's just silly. Ideally, the layouts should adjust seamlessly -- and this project aims to do just that.
 
-- saving an `autorandr` profile will also save a snapshot of the current `dconf` state (ie. wallpaper and theming, panels and their contents, keyboard shortcuts, etc.)
-- switching to a profile will restore the profile-specific `dconf` state, if one exists.
-- switching away from a profile "can" also save a snapshot, or update an existing one. This ensures that any ongoing tinkering is not lost when (un)plugging a monitor just because you forgot to explicitly save your changes. However, this functionality is currently disabled (this is why "can" is in quotes, because the code exists but is commented out). The reason is that, if you were to _force_ a profile active, then the panels and such might get all screwed up by trying to adjust to an unexpected layout -- if you then switched away from it, you would save a snapshot of a mangled state. Ugh. Better to save _only_ when expliticly saving (or updating) a profile.
+## Goal / Promise
 
-### Future plans
-Future plans involve the following. For details, see the [change log](CHANGELOG.md#unreleased).
-
-- selecting appropriate microphone and speaker devices (I have a working prototype of this, based on [this](https://unix.stackexchange.com/questions/460996/autorandr-but-for-audio-devices/) resource)
-- selecting an appropriate default printer _based on network status_ (until then I shall presume a default can be chosen based on the connected displays). At least [two](https://askubuntu.com/questions/1025450/how-to-automatically-switch-default-printers-based-on-your-location) [other](https://unix.stackexchange.com/questions/323582/how-can-i-automatically-change-the-default-printer-based-on-the-connected-networ) persons have expressed a desire for this, and they might not (want to) use `autorandr`.
+When you use `autorandr` together with `noughty autorandr`, saving a profile doesn't just save the display configuration -- it also saves the configuration of desktop elements such as panels, panel applets with their position and configuration, even the background wallpaper and keyboard shortcuts. Oh, and the default printer, which is probably different between work and the home office.
 
 ## Installation
 
 ### Prerequisites
 
-- This is an add-on for `autorandr` which therefore needs to be installed beforehand.
-- Also, `noughty-autorandr` assumes that `dconf`, `cups`, and `libnotify` are installed.
+* This is an add-on for `autorandr` which therefore needs to be installed beforehand.
+* Also, `noughty-autorandr` assumes that `bash`, `dconf`, `cups`, and `libnotify` are installed.
 
-### Installation
-The `noughty` directory should be placed within `~/.config/autorandr/`, alongside any existing profiles you may have (don't worry, `autorandr` won't pick up on it). The files in _this_ project that are outside of that directory merely show how to plug them into your existing [hook scripts](https://github.com/phillipberndt/autorandr#hook-scripts); you probably do not want to replace yours with these unless you don't have any to begin with.
+### Download
+
+Navigate to where you would like this add-on installed. It is going to create its own `noughty-autorandr` subdirectory. Then, run the command `git clone https://github.com/Noughtnaut/noughty-autorandr.git`.
+
+### Plug into the hook scripts
+
+You can do this two ways:
+
+1. If you're not doing anything else with `autorandr` [hook scripts](https://github.com/phillipberndt/autorandr#hook-scripts), you can create simply symbolic links for the following files and place them within `~/.config/autorandr/`, alongside any existing profiles you may have.
+
+    * the file `preswitch`
+    * the file `postswitch`
+    * the file `postsave`
+    * the directory `noughty` (don't worry, `autorandr` won't see "noughty" as a possible profile)
+
+2. If you _have_ other things going on in those hook scripts, it's better to create the links with different names, and then have the hook scripts call _those_. This way, updating `noughty autorandr` won't overwrite any of your own hook script commands.
 
 ## Usage
 
-Just use `autorandr` as you usually do, that's all there is to it! From time to time you may want to save changes to your display setup (or create new ones), and in those cases `noughty-autorandr` will be called upon to do its additional tasks.
+After installation, just use `autorandr` as you usually do -- that's all there is to it!
+
+One thing, though: when you make changes to something that's stored in `dconf` (such as adding a keyboard shortcut), you should update the current profile
+
+From time to time you may want to make changes to your display setup (or create new ones), and in those cases `noughty-autorandr` will be called upon to do its additional tasks.
+
+### Configuration
+
+There is as of yet no other means of adjusting the workings than editing the scripts within the `noughty` directory. This is not ideal, this is version 0.1. :-Þ
+
+## Changes
+
+The [roadmap](ROADMAP.md) describes what is being considered for the future. Also, the [change log](CHANGELOG.md#unreleased) might show things that are further along, albeit still unreleased.
 
 <!---
 #TODO
-## Contrubuting
-
-#TODO
-## License
+## Contributing
 --->
+
+## License
+
+This software is distributed under the terms of the GNU General Public License v2 ([TL;DR](https://tldrlegal.com/license/gnu-general-public-license-v2)).
+
+## Thanks
+
+This project would be nothing without `autorandr`, so a sincere _thank you_ goes out to @wertarbyte, @phillipberndt, and the over 50 other contributors to that project.
