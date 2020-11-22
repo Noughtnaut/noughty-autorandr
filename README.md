@@ -34,6 +34,10 @@ The `noughty` directory should be placed within `~/.config/autorandr/`, alongsid
 
 Just use `autorandr` as you usually do, that's all there is to it! From time to time you may want to save changes to your display setup (or create new ones), and in those cases `noughty-autorandr` will be called upon to do its additional tasks.
 
-[](TODO add section Contrubuting)
+<!---
+#TODO
+## Contrubuting
 
-[](TODO add section License)
+#TODO
+## License
+--->
