@@ -7,6 +7,7 @@ noughtyRoot="$(dirname "$0")/noughty" # This is relative to the origin script, w
 snapshot="$AUTORANDR_PROFILE_FOLDER/dconf.snapshot"
 if touch "$snapshot" ; then
     if [ -w "$snapshot" ] ; then
+        cp -f "$snapshot" "$snapshot.old" # Assume we can write a backup if we can write a snapshot
         if dconf dump / > "$snapshot" ; then
             popup save "noughty autorandr" "Saved dconf snapshot for '$AUTORANDR_CURRENT_PROFILE'."
         else

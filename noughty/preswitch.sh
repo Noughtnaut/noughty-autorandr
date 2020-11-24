@@ -1,10 +1,5 @@
 #! /bin/bash
 
-#############################################
-exit # Only save dconf snapshot on postsave #
-#############################################
-# (This avoids accidental destruction if a profile switch failed)
-
 originDir="$(dirname "$0")"
 noughtyRoot="$originDir/noughty"
 . "$noughtyRoot/functions.sh"
@@ -19,6 +14,7 @@ if [ "$profile" != "$AUTORANDR_CURRENT_PROFILE" ] ; then
     snapshot="$profile/dconf.snapshot"
     if touch "$snapshot" ; then
         if [ -w "$snapshot" ] ; then
+            cp -f "$snapshot" "$snapshot.old" # Assume we can write a backup if we can write a snapshot
             if dconf dump / > "$snapshot" ; then
                 popup save "noughty autorandr" "Saved dconf snapshot for '$profile'."
             else
